@@ -1,0 +1,22 @@
+.loan-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Vertical spacing between form fields */
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 767px) {
+    .loan-form {
+      width: 90%;
+      margin: 0 auto; /* Center the form horizontally on small screens */
+    }
+  }
+  
+  /* Tablet and desktop styles */
+  @media (min-width: 768px) {
+    .loan-form {
+      width: 70%;
+      margin: 0 auto; /* Center the form horizontally on larger screens */
+    }
+  }
+  
