@@ -9,7 +9,7 @@ import {
   ListItem,
 } from "@mui/material";
 import { auth } from "../firebase";
-const App = () => {
+const LoanApplicationForm = () => {
   const [loanAmount, setLoanAmount] = useState("");
   const [loanTerm, setLoanTerm] = useState("");
   const [loanDate, setLoanDate] = useState("");
@@ -206,24 +206,27 @@ const App = () => {
                 </Typography>
                 <Typography>Amount: {application.amount}</Typography>
                 <Typography>Term: {application.term} weeks</Typography>
-                <TextField
-                  label="Repayment Amount"
-                  type="number"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  value={repaymentAmount}
-                  onChange={(e) => setRepaymentAmount(e.target.value)}
-                />
+                {application.Status === "APPROVED" && (
+                  <>
+                    <TextField
+                      label="Repayment Amount"
+                      type="number"
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      value={repaymentAmount}
+                      onChange={(e) => setRepaymentAmount(e.target.value)}
+                    />
 
-                {/* Button to repay the loan */}
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => repayLoan(application.id,repaymentAmount)}
-                >
-                  Repay Loan
-                </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => repayLoan(application.id, repaymentAmount)}
+                    >
+                      Repay Loan
+                    </Button>
+                  </>
+                )}
               </div>
               {application.repayments && application.repayments.length > 0 && (
                 <div>
@@ -251,4 +254,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default LoanApplicationForm;
