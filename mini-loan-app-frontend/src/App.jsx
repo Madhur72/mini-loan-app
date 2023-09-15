@@ -1,12 +1,17 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import LoanApplicationForm from "../src/Components/LoanApplicationForm";
+import Login from "./Components/Login";
+import AdminDashboard from "./Components/AdminDashboard"; // Import the AdminDashboard component
+
 const App = () => {
   return (
     <Container maxWidth="lg">
       <Routes>
-        <Route exact path="/" Component={LoanApplicationForm} />
+        <Route path="/" element={<Login />} />
+        <Route exact path="/loanForm" element={<LoanApplicationForm />} />
+        <Route exact path="/admin" element={<AdminDashboard />} /> {/* Define the admin route */}
       </Routes>
     </Container>
   );
