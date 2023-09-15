@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import LoanApplicationForm from "../src/Components/LoanApplicationForm";
 import Login from "./Components/Login";
-import AdminDashboard from "./Components/AdminDashboard"; // Import the AdminDashboard component
+import AdminDashboard from "./Components/AdminDashboard";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route exact path="/loanForm" element={<LoanApplicationForm />} />
-        <Route exact path="/admin" element={<AdminDashboard />} /> {/* Define the admin route */}
+        <Route exact path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Container>
   );

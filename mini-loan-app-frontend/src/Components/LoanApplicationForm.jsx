@@ -16,7 +16,7 @@ const LoanApplicationForm = () => {
 
   const [loanApplications, setLoanApplications] = useState([]);
   const [repaymentAmount, setRepaymentAmount] = useState("");
-  const apiUrl = "http://localhost:3001"; // Replace with your backend API URL
+  const apiUrl = "http://localhost:3001";
 
   const fetchLoanApplications = async () => {
     try {
@@ -36,16 +36,13 @@ const LoanApplicationForm = () => {
     const totalLoanTerm = parseInt(term, 10);
     const startDateObj = new Date(startDate);
 
-    // Calculate the weekly repayment amount
     const repaymentAmount = totalLoanAmount / totalLoanTerm;
 
-    // Initialize an array to store the repayments
     const repayments = [];
 
-    // Calculate and push each weekly repayment
     for (let i = 1; i <= totalLoanTerm; i++) {
       const repaymentDate = new Date(startDateObj);
-      repaymentDate.setDate(startDateObj.getDate() + 7 * i); // Add 7 days for each week
+      repaymentDate.setDate(startDateObj.getDate() + 7 * i);
       const formattedDate = repaymentDate.toDateString();
       repayments.push({
         date: formattedDate,
@@ -59,25 +56,23 @@ const LoanApplicationForm = () => {
 
   const repayLoan = async (loanId) => {
     try {
-      // Find the selected loan application by ID
       const selectedLoan = loanApplications.find((app) => app.id === loanId);
       const UID = selectedLoan.userId;
       if (selectedLoan && selectedLoan.repayments) {
-        // Find the first pending repayment
         const pendingRepaymentIndex = selectedLoan.repayments.findIndex(
           (repayment) => repayment.Status === "PENDING"
         );
 
         if (pendingRepaymentIndex !== -1) {
-          // Mark the first pending repayment as "PAID"
           selectedLoan.repayments[pendingRepaymentIndex].Status = "PAID";
           if (
-            selectedLoan.repayments.every((repayment) => repayment.Status === "PAID")
+            selectedLoan.repayments.every(
+              (repayment) => repayment.Status === "PAID"
+            )
           ) {
             selectedLoan.Status = "PAID";
           }
-          
-          // Send the updated repayment status to the server
+
           const response = await fetch(
             `${apiUrl}/loans/${UID}/${loanId}/repayments/${pendingRepaymentIndex}`,
             {
@@ -95,7 +90,6 @@ const LoanApplicationForm = () => {
             throw new Error("Failed to update repayment status");
           }
 
-          // Update the frontend state to reflect the change
           setLoanApplications([...loanApplications]);
           console.log(loanApplications);
         }
@@ -107,14 +101,12 @@ const LoanApplicationForm = () => {
 
   const submitLoanApplication = async () => {
     try {
-      // Calculate weekly repayments
       const weeklyRepayments = calculateWeeklyRepayments(
         loanAmount,
         loanTerm,
         loanDate
       );
 
-      // Create the new loan application object with repayments
       const newLoanApplication = {
         amount: loanAmount,
         term: loanTerm,

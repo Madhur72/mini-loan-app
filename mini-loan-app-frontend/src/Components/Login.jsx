@@ -20,7 +20,6 @@ const Login = () => {
       const isAdminUser = email === "admin@admin.com" && password === "adminn";
 
       console.log(isAdminUser)
-      // Redirect to the appropriate page based on admin status
       if (isAdminUser) {
         navigate('/admin')
       } else {
