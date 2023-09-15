@@ -92,7 +92,9 @@ Run npm run install-all to install all project dependencies (both front end and 
 Run npm run start to start the project.
 
 ## Login Details
+
 I have Created 3 Profiles 
+
 Admin: email:admin@admin.com, Password:adminn
 
 Hemant: email:hemant@hemant.com, Password:hemant
