@@ -6,6 +6,14 @@
       "mini-loan-app",
       "mini-loan-app-frontend"
     ],
+
+    "scripts": {
+      "server": " cd mini-loan-app && nodemon index.js",
+      "client": "cd mini-loan-app-frontend && npm run start",
+      "start": "concurrently \"npm run server\" \"npm run client\"",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+
     "private": true
   }
   
