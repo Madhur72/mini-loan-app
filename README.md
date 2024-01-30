@@ -87,7 +87,7 @@ Clone the repository: git clone https://github.com/Madhur72/mini-loan-app.git
 
 Change directory to the project folder: cd mini-loan-app
 
-Run npm run install-all to install all project dependencies (both front end and back end).
+Run npm run install to install all project dependencies (both front end and back end).
 
 Run npm run start to start the project.
 
