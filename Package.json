@@ -9,8 +9,10 @@
 
     "scripts": {
       "server": " cd mini-loan-app && nodemon index.js",
-      "client": "cd mini-loan-app-frontend && npm run start",
-      "start": "concurrently \"npm run server\" \"npm run client\"",
+      "client": "cd mini-loan-app-frontend && npm run build",
+      "clientStart": "cd mini-loan-app-frontend && npm run start",
+      "start": "concurrently \"npm run server\" \"npm run clientStart\"",
+      "build": "concurrently \"npm run server\" \"npm run client\"",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
 
