@@ -1,0 +1,11 @@
+{
+    "name": "mini-loan-app",
+    "version": "1.0.0",
+    "description": "Root package for mini-loan-app",
+    "workspaces": [
+      "mini-loan-app",
+      "mini-loan-app-frontend"
+    ],
+    "private": true
+  }
+  
