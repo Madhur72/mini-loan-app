@@ -52,9 +52,9 @@ const AdminDashboard = () => {
         {pendingLoans.map((loan) => (
           <ListItem key={loan.id}>
             <div>
-              <Typography variant="h6">Status: {loan.amount}</Typography>
-              <Typography variant="h6">Status: {loan.tern}</Typography>
-              <Typography variant="h6">Status: {loan.date}</Typography>
+              <Typography variant="h6">Amount: {loan.amount}</Typography>
+              <Typography variant="h6">Weeks: {loan.term}</Typography>
+              <Typography variant="h6">Start Date: {loan.date}</Typography>
               <Button
                 variant="contained"
                 color="primary"
