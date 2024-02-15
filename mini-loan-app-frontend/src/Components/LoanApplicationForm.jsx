@@ -13,7 +13,7 @@ const LoanApplicationForm = () => {
   const [loanAmount, setLoanAmount] = useState("");
   const [loanTerm, setLoanTerm] = useState("");
   const [loanDate, setLoanDate] = useState("");
-
+  const [interest, setInterest] = useState("");
   const [loanApplications, setLoanApplications] = useState([]);
   const [repaymentAmount, setRepaymentAmount] = useState("");
   const apiUrl = "http://localhost:3001";
@@ -30,9 +30,9 @@ const LoanApplicationForm = () => {
       console.error("Error fetching loan applications:", error);
     }
   };
-  function calculateWeeklyRepayments(amount, term, startDate) {
+  function calculateWeeklyRepayments(amount, term, startDate,extra) {
     // Parse the input values
-    const totalLoanAmount = parseFloat(amount);
+    const totalLoanAmount = parseFloat(amount)+parseFloat(extra);
     const totalLoanTerm = parseInt(term, 10);
     const startDateObj = new Date(startDate);
 
@@ -100,15 +100,17 @@ const LoanApplicationForm = () => {
   };
 
   const submitLoanApplication = async () => {
+    const extra = (parseFloat(interest)*loanAmount/100)
     try {
       const weeklyRepayments = calculateWeeklyRepayments(
         loanAmount,
         loanTerm,
-        loanDate
+        loanDate,
+        extra
       );
 
       const newLoanApplication = {
-        amount: loanAmount,
+        amount: parseFloat(loanAmount)+extra,
         term: loanTerm,
         date: loanDate,
         Status: "PENDING",
@@ -136,6 +138,7 @@ const LoanApplicationForm = () => {
       setLoanAmount("");
       setLoanTerm("");
       setLoanDate("");
+      setInterest("");
     } catch (error) {
       console.error("Error submitting loan application:", error);
     }
@@ -169,6 +172,16 @@ const LoanApplicationForm = () => {
           margin="normal"
           value={loanTerm}
           onChange={(e) => setLoanTerm(e.target.value)}
+          required
+        />
+        <TextField
+          label="Interest rate(%)"
+          type="number"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
           required
         />
         <TextField
